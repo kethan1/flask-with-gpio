@@ -9,6 +9,8 @@ app.url_map.strict_slashes = False
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
+GPIO.setup(17, GPIO.HIGH)
+
 
 @app.route('/')
 def home():
@@ -16,17 +18,15 @@ def home():
         return render_template('home.html', year=datetime.datetime.now().year)
 
 
-def GPIOHIGH():
-    GPIO.output(17, GPIO.HIGH)
+@app.route('/LOW')
+def LOW():
+    GPIO.output(17, False)
 
 
-def GPIOLOW():
-    GPIO.output(17, GPIO.LOW)
-
-
-app.add_template_global(GPIOHIGH, name='HIGH')
-app.add_template_global(GPIOLOW, name='LOW')
+@app.route('/HIGH')
+def HIGH():
+    GPIO.output(17, True)
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0")

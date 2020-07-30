@@ -11,7 +11,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='/favicon.jpg') }}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='./favicon.jpg') }}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        function high(){
+            $.ajax({
+                type: "GET",
+                url: "http://0.0.0.0:5000/high",
+            });
+        }
+        function low(){
+            $.ajax({
+                type: "GET",
+                url: "http://0.0.0.0:5000/low",
+            });
+        }
+     </script>
 </head>
 <body>
 
@@ -62,9 +77,9 @@
         </div>
     </div>
 
-    <div>
-        <a style="text-align: center;" onclick="{{ HIGH() }}" class="btn waves-effect waves-light">On</a>
-        <a style="text-align: center;" onclick="{{ LOW() }}" class="btn waves-effect waves-light">Off</a>
+    <div style="text-align: center;">
+        <a onclick="high()" class="btn waves-effect waves-light">On</a>
+        <a onclick="low()" class="btn waves-effect waves-light">Off</a>
     </div>
 
     <footer class="footer">
