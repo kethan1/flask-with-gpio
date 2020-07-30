@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Home</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./styles.css') }}">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!-- Compiled and minified JavaScript -->
@@ -36,7 +36,7 @@
                 <div class="nav-wrapper">
 
                     <div style="height: 100%;" class="row brand-logo">
-                        <img src="{{ url_for('static', filename='/favicon.jpg') }}" style="height: 100%;">
+                        <img src="{{ url_for('static', filename='./favicon.jpg') }}" style="height: 100%;">
                     </div>
 
                     <div style="text-align: center; color: white; font-size: 3.5vw">
@@ -52,7 +52,7 @@
                     <a style="color: white;" href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
                     <div style="height: 100%;" class="row brand-logo">
-                        <img src="{{ url_for('static', filename='favicon.jpg') }}" style="height: 100%;">
+                        <img src="{{ url_for('static', filename='./favicon.jpg') }}" style="height: 100%;">
                     </div>
 
                 </div>
@@ -62,11 +62,9 @@
         </div>
     </div>
 
-    <div class="container">
-        <form method="POST" style="text-align: center;">
-            <button class="btn waves-effect waves-light" type="submit" value="on" name="Button">On</button>
-            <button class="btn waves-effect waves-lightwaves-effect waves-light" type="submit" value="off" name="Button">Off</button>
-        </form>
+    <div>
+        <a style="text-align: center;" onclick="{{ HIGH() }}" class="btn waves-effect waves-light">On</a>
+        <a style="text-align: center;" onclick="{{ LOW() }}" class="btn waves-effect waves-light">Off</a>
     </div>
 
     <footer class="footer">

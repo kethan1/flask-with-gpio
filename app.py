@@ -1,5 +1,4 @@
 from flask import *
-from werkzeug.exceptions import HTTPException
 import datetime
 import RPi.GPIO as GPIO
 
@@ -11,17 +10,23 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def home():
     if request.method == 'GET':
         return render_template('home.html', year=datetime.datetime.now().year)
-    elif request.method == 'POST':
-        if request.form['Button'] == 'on':
-            GPIO.output(17, GPIO.HIGH)
-        else:
-            GPIO.output(17, GPIO.LOW)
-        return redirect('/')
+
+
+def GPIOHIGH():
+    GPIO.output(17, GPIO.HIGH)
+
+
+def GPIOLOW():
+    GPIO.output(17, GPIO.LOW)
+
+
+app.add_template_global(GPIOHIGH, name='HIGH')
+app.add_template_global(GPIOLOW, name='LOW')
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
